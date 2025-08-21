@@ -1,8 +1,8 @@
 USE AdventureWorks2022
 
 -- Get the newest version from the destination table
-DECLARE @newestDestVersion BINARY(8)
-SELECT @newestDestVersion = MAX(SourceVersion) FROM [AdventureWorks2022].[Demo].[Destination];
+DECLARE @CurrentMaxVersion BINARY(8)
+SELECT @CurrentMaxVersion = MAX(SourceVersion) FROM [AdventureWorks2022].[Demo].[Destination];
 
 
 
@@ -12,7 +12,7 @@ Print 'deleting records updated in source from destination';
 
 WITH UpdatedRecords AS
 (
-SELECT rowguid FROM  [AdventureWorks2022].[Demo].[Source] WHERE version > @newestDestVersion
+SELECT rowguid FROM  [AdventureWorks2022].[Demo].[Source] WHERE version > @CurrentMaxVersion
 )
 DELETE FROM Demo.Destination WHERE rowguid IN (SELECT rowguid FROM UpdatedRecords)
 
