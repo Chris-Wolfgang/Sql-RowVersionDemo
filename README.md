@@ -1,4 +1,4 @@
-# Sql-RowVersionDemo
+# SQL Server RowVersion Demo
 
 This repository contains examples of how to use the SQL Server RowVersion data type in productions systems
 
